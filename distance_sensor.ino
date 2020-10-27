@@ -1,49 +1,31 @@
 #include "displayController.h"
+#include "ultrasonic_sensor.h"
 
-int trigPin = 5;
-int echoPin = 6;
+#define DEBUG
 
-
+#ifdef DEBUG
+ #define DEBUG_PRINT(x)  Serial.println (x)
+#else
+ #define DEBUG_PRINT(x)
+#endif
 
 void setup() {
-  //Serial Port begin
+  
+#ifdef DEBUG
   Serial.begin (9600);
-  //Define inputs and outputs
-  pinMode(trigPin, OUTPUT);
-  digitalWrite(trigPin, LOW);
-  pinMode(echoPin, INPUT);
-
-  Serial.begin(9600);
-
-
-
-}
-
-void printDistance(void)
-{
-
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-
-  auto duration = pulseIn(echoPin, HIGH);
-  auto  cm = (duration / 2) / 29.1;   // Divide by 29.1 or multiply by 0.0343
-  Serial.println(cm);
-
-  delay(100);
+#endif
 }
 
 displayController display;
+ultrasonicSensor distane_sensor;
 
 void loop() {
-  static int i{0};
 
-  display.setNumber(i);
+  const unsigned long distance = distane_sensor.getDistanceInCm();
+  display.setNumber(distance);
+  Serial.print(" ");
+  Serial.println(distance);
 
-  i++;
-  i = i % 1000;
-  Serial.println(i);
-
-  delay(300);
+  delay(50);
 
 }
