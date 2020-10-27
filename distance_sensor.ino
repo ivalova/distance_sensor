@@ -1,31 +1,23 @@
 #include "displayController.h"
 #include "ultrasonic_sensor.h"
+#include "logging.h"
 
-#define DEBUG
-
-#ifdef DEBUG
- #define DEBUG_PRINT(x)  Serial.println (x)
-#else
- #define DEBUG_PRINT(x)
-#endif
-
-void setup() {
-  
+void setup()
+{
 #ifdef DEBUG
   Serial.begin (9600);
 #endif
 }
 
 displayController display;
-ultrasonicSensor distane_sensor;
+ultrasonicSensor distance_sensor;
 
-void loop() {
-
-  const unsigned long distance = distane_sensor.getDistanceInCm();
+void loop() 
+{
+  const unsigned long distance = distance_sensor.getDistanceInCm();
   display.setNumber(distance);
-  Serial.print(" ");
-  Serial.println(distance);
+  
+  DEBUG_PRINTLN((String)"Distance:" + distance);
 
-  delay(50);
-
+  delay(100);
 }
