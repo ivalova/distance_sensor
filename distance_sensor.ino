@@ -1,9 +1,9 @@
-#include "LedControl.h"
+#include "displayController.h"
 
 int trigPin = 5;
 int echoPin = 6;
 
-LedControl lc=LedControl(11,13,10); 
+
 
 void setup() {
   //Serial Port begin
@@ -13,20 +13,16 @@ void setup() {
   digitalWrite(trigPin, LOW);
   pinMode(echoPin, INPUT);
 
-Serial.begin(9600);
-    lc.shutdown(0,false);
-  /* Set the brightness to a medium values */
-  lc.setIntensity(0,10);
-  /* and clear the display */
-  lc.clearDisplay(0);
-  
+  Serial.begin(9600);
+
+
 
 }
 
 void printDistance(void)
 {
 
-   digitalWrite(trigPin, HIGH);
+  digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
@@ -37,18 +33,17 @@ void printDistance(void)
   delay(100);
 }
 
+displayController display;
 
- int i;
 void loop() {
-    Serial.print("Measurement: ");
- //printDistance();
+  static int i{0};
 
-  lc.setDigit(0, 1, i%10, false);
-    lc.setDigit(0, 2, i/10%10, false);
-      lc.setDigit(0, 3, i/100, false);
-      i++;
-      i=i%1000;
-      Serial.println(i);
-delay(500);
+  display.setNumber(i);
+
+  i++;
+  i = i % 1000;
+  Serial.println(i);
+
+  delay(300);
 
 }
