@@ -8,8 +8,8 @@ class ultrasonicSensor
     void performNewDistanceMeasurement(void);
     unsigned long getAverageDistanceFromBuffer(void);
 
-    static constexpr int trigPin{5};
-    static constexpr int echoPin{6};
+    static constexpr int trigPin{3};
+    static constexpr int echoPin{4};
     static constexpr char buffer_size{20};
 
     int latest_buffer_index{0};

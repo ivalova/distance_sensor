@@ -19,5 +19,5 @@ void loop()
   
   DEBUG_PRINTLN((String)"Distance:" + distance);
 
-  delay(100);
+  delay(150);
 }
