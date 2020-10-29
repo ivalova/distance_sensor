@@ -1,3 +1,6 @@
+#ifndef ULTRASONIC_SENSOR_H_
+#define ULTRASONIC_SENSOR_H_
+
 class ultrasonicSensor
 {
   public:
@@ -15,3 +18,5 @@ class ultrasonicSensor
     int latest_buffer_index{0};
     unsigned long measurement_buffer[buffer_size];
 };
+
+#endif //ULTRASONIC_SENSOR_H_

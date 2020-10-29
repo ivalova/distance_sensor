@@ -19,7 +19,6 @@ void loop()
   const unsigned long distance = distance_sensor.getDistanceInCm();
   display.setNumber(distance);
 
-
   DEBUG_PRINTLN((String)"Distance:" + distance);
 
   delay(1000);

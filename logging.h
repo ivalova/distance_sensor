@@ -1,3 +1,6 @@
+#ifndef LOGGING_H_
+#define LOGGING_H_
+
 #include <HardwareSerial.h>
 
 #define DEBUG
@@ -9,3 +12,5 @@
 #define DEBUG_PRINT(x)
 #define DEBUG_PRINTLN(x)
 #endif
+
+#endif //LOGGING_H_

@@ -1,3 +1,6 @@
+#ifndef DISPLAY_CONTROLLER_H_
+#define DISPLAY_CONTROLLER_H_
+
 #include "LedControl.h"
 
 class displayController
@@ -14,3 +17,5 @@ class displayController
     static constexpr int clkPin{13};
     static constexpr int csPin{10};
 };
+
+#endif //DISPLAY_CONTROLLER_H_
