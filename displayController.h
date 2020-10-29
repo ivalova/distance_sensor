@@ -7,7 +7,11 @@ class displayController
 {
   public:
     displayController();
+    
+    /*Displays a number on 3-digit display, limited to 999*/
     void setNumber(int value);
+    
+    /*Turns off whole display*/
     void clearDisplay(void);
 
   private:

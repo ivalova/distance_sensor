@@ -31,7 +31,7 @@ void ultrasonicSensor::performNewDistanceMeasurement(void)
   unsigned long duration = pulseIn(echoPin, HIGH);
   unsigned long distance = (duration / 2.0) / 29.1;
 
-  DEBUG_PRINT((String)"Measured:" + distance + " ");
+  DEBUG_PRINTLN((String)"Measured distance:" + distance + " ");
 
   measurement_buffer[latest_buffer_index] = distance;
   latest_buffer_index++;

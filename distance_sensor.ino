@@ -1,7 +1,7 @@
 #include "displayController.h"
 #include "ultrasonic_sensor.h"
+#include "temperature_sensor.h"
 #include "logging.h"
-
 
 void setup()
 {
@@ -12,14 +12,16 @@ void setup()
 
 displayController display;
 ultrasonicSensor distance_sensor;
+temperatureSensor temperature_sensor;
 
 void loop()
 {
   display.clearDisplay(); // Display causes voltage drop which interferes with distance sensor
   const unsigned long distance = distance_sensor.getDistanceInCm();
   display.setNumber(distance);
+    DEBUG_PRINTLN((String)"Displayed distance:" + distance);
+  
+  int temperature = temperature_sensor.getTemperature();
 
-  DEBUG_PRINTLN((String)"Distance:" + distance);
-
-  delay(1000);
+  delay(150);
 }
