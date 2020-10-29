@@ -5,6 +5,7 @@ class displayController
   public:
     displayController();
     void setNumber(int value);
+    void clearDisplay(void);
 
   private:
     LedControl lc_;

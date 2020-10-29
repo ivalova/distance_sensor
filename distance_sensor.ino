@@ -2,6 +2,7 @@
 #include "ultrasonic_sensor.h"
 #include "logging.h"
 
+
 void setup()
 {
 #ifdef DEBUG
@@ -12,12 +13,14 @@ void setup()
 displayController display;
 ultrasonicSensor distance_sensor;
 
-void loop() 
+void loop()
 {
+  display.clearDisplay(); // Display causes voltage drop which interferes with distance sensor
   const unsigned long distance = distance_sensor.getDistanceInCm();
   display.setNumber(distance);
-  
+
+
   DEBUG_PRINTLN((String)"Distance:" + distance);
 
-  delay(150);
+  delay(1000);
 }
