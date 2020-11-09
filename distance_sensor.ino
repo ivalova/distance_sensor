@@ -3,8 +3,11 @@
 #include "temperature_sensor.h"
 #include "logging.h"
 
+#define SWITCH_PIN 2
+
 void setup()
 {
+  pinMode(SWITCH_PIN,INPUT_PULLUP);
 #ifdef DEBUG
   Serial.begin (9600);
 #endif
@@ -16,12 +19,24 @@ temperatureSensor temperature_sensor;
 
 void loop()
 {
-  display.clearDisplay(); // Display causes voltage drop which interferes with distance sensor
-  const unsigned long distance = distance_sensor.getDistanceInCm();
-  display.setNumber(distance);
-    DEBUG_PRINTLN((String)"Displayed distance:" + distance);
+  auto read_temperature = digitalRead(SWITCH_PIN);
+  int display_value{0};
+
+  if(read_temperature == true)
+  {
+      display_value = static_cast<int>(temperature_sensor.getTemperature());
+      
+  }
+  else
+  {
+    display.clearDisplay(); // Display causes voltage drop which interferes with distance sensor
+  display_value = distance_sensor.getDistanceInCm();
+ 
+  DEBUG_PRINTLN((String)"Displayed distance:" + display_value);
+  }
   
-  int temperature = temperature_sensor.getTemperature();
+ display.setNumber(display_value);
 
   delay(150);
+  
 }
